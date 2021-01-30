@@ -23,8 +23,9 @@ def get_statistic():
     player_stats = [[td.getText() for td in rows[i].findAll('td')]
                 for i in range(len(rows))]
 
-    stats = pd.DataFrame(player_stats, columns = headers)
-    # return stats.loc[stats['Player'] == name]
+    stats = pd.DataFrame(player_stats, columns = headers).drop_duplicates(subset=['Player'])
+    duplicate_players = stats.groupby('Player').filter(lambda x: len(x) > 2).drop_duplicates(subset='Player')
+    stats = pd.concat([stats,duplicate_players])
     return player_stats , headers, stats
 # if __name__ == "__main__":
 #     print(get_statistic())[2]
