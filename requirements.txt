@@ -1,4 +1,4 @@
 streamlit==0.75.0
-pandas==1.2.1
+pandas==0.24.2
 lxml==4.6.2
 beautifulsoup4==4.9.3
