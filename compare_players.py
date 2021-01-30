@@ -31,6 +31,10 @@ def app():
     filtered_player_two = utils.get_relevant_data_compare(df_player_two).reset_index()
     st.dataframe(filtered_player_one.compare(filtered_player_two, align_axis=0).rename(index={'self': player_one_name[0], 'other': player_two_name[0]}, level=-1))
 
+    st.header('Players Rating')
+    st.markdown('**The Player Efficiency Rating (PER) is a per-minute rating developed by ESPN.com columnist John Hollinger.**')
+    st.text('{} Rating is {}'.format(player_one_name[0],utils.get_player_rating(player_one_name[0])))
+    st.text('{} Rating is {}'.format(player_two_name[0],utils.get_player_rating(player_two_name[0])))
 
     st.header('Discrete difference between {} to {}'.format(player_one_name[0],player_two_name[0]))
     st.dataframe(concat_df_dif)
