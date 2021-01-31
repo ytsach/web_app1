@@ -13,16 +13,30 @@ def app():
 
     # Web scraping of NBA player stats
     player_stats_data = get_statistic()
-    player_stats = player_stats_data[2]
+    player_stats = player_stats_data[2].drop(columns=['Pos','Age'])
     player_names = [name[0] for name in player_stats_data[0] if name != []]
 
     player_one_name = st.sidebar.multiselect('Player 1:', player_names,default=["Bradley Beal"],)
     player_two_name = st.sidebar.multiselect('Player 2:', player_names,default=["Bradley Beal"],)
 
+    days = st.sidebar.selectbox("Statistic Scope:",
+                         ["Total Per Game","7 Days", "14 Days", "30 Days"])
+    if days == "7 Days":
+        player_stats = get_statistic('7')[2]
+    elif days == "14 Days":
+        player_stats = get_statistic('14')[2]
+    elif days == "30 Days":
+        player_stats = get_statistic('30')[2]
+
+
+
     df_player_one = player_stats.loc[player_stats['Player'] == player_one_name[0]]
     df_player_two = player_stats.loc[player_stats['Player'] == player_two_name[0]]
+    concat_df = pd.concat([df_player_one,df_player_two]).drop(columns=['Player','Tm','G','GS','MP'])
 
-    concat_df = pd.concat([df_player_one,df_player_two]).drop(columns=['Player','Pos','Age','Tm','G','GS','MP'])
+
+
+
     concat_df_dif = concat_df.apply(pd.to_numeric).diff()
 
 
@@ -33,8 +47,8 @@ def app():
 
     st.header('Players Rating')
     st.markdown('**The Player Efficiency Rating (PER) is a per-minute rating developed by ESPN.com columnist John Hollinger.**')
-    st.text('{} Rating is {}'.format(player_one_name[0],utils.get_player_rating(player_one_name[0])))
-    st.text('{} Rating is {}'.format(player_two_name[0],utils.get_player_rating(player_two_name[0])))
+    st.text('{} Rating is {}'.format(player_one_name[0],utils.get_player_rating(player=player_one_name[0])))
+    st.text('{} Rating is {}'.format(player_two_name[0],utils.get_player_rating(player=player_two_name[0])))
 
     st.header('Discrete difference between {} to {}'.format(player_one_name[0],player_two_name[0]))
     st.dataframe(concat_df_dif)

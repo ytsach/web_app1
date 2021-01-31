@@ -3,6 +3,7 @@ import daily_leaders
 import welcome
 import inj
 import trade_analyzer
+import rater
 import streamlit as st
 PAGES = {
     "Welcome Page": welcome,
@@ -10,6 +11,7 @@ PAGES = {
     "Trade Analyzer":trade_analyzer,
     "Daily Leaders": daily_leaders,
     "Injuery report": inj,
+    "Player Rater": rater,
 }
 st.sidebar.title('NBA Data Anlayzer')
 selection = st.sidebar.radio("Go to", list(PAGES.keys()))

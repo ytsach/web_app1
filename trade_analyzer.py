@@ -13,11 +13,20 @@ def app():
 
     # Web scraping of NBA player stats
     player_stats_data = get_statistic()
-    player_stats = player_stats_data[2]
+    player_stats = player_stats_data[2].drop(columns=['Pos','Age'])
     player_names = [name[0] for name in player_stats_data[0] if name != []]
 
     team_one_names = st.sidebar.multiselect('Players From Team1:', player_names, default=["Bradley Beal"], )
     team_two_names = st.sidebar.multiselect('Players From Team2:', player_names, default=["Bradley Beal"], )
+
+    days = st.sidebar.selectbox("Statistic Scope:",
+                                ["Total Per Game", "7 Days", "14 Days", "30 Days"])
+    if days == "7 Days":
+        player_stats = get_statistic('7')[2]
+    elif days == "14 Days":
+        player_stats = get_statistic('14')[2]
+    elif days == "30 Days":
+        player_stats = get_statistic('30')[2]
 
     team_one_df = player_stats.loc[player_stats['Player'] == team_one_names[0]]
     team_one_rating = float(utils.get_player_rating(team_one_names[0]))

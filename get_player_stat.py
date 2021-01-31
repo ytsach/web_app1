@@ -2,12 +2,18 @@ from urllib.request import urlopen
 from bs4 import BeautifulSoup
 import pandas as pd
 import streamlit as st
+import utils
 
 @st.cache
-def get_statistic():
+def get_statistic(days=None):
     # NBA season we will be analyzing
     # URL page we will scraping (see image above)
-    url = "https://www.basketball-reference.com/leagues/NBA_2021_per_game.html"
+    # if days exists then it will take last n days stat
+    if days:
+        url = "https://www.basketball-reference.com/friv/last_n_days.fcgi?n={}&type=per_game".format(days)
+    else:
+        url = "https://www.basketball-reference.com/leagues/NBA_2021_per_game.html"
+
     # this is the HTML from the given URL
     html = urlopen(url)
     soup = BeautifulSoup(html,features="lxml")
@@ -26,6 +32,10 @@ def get_statistic():
     stats = pd.DataFrame(player_stats, columns = headers).drop_duplicates(subset=['Player'])
     duplicate_players = stats.groupby('Player').filter(lambda x: len(x) > 2).drop_duplicates(subset='Player')
     stats = pd.concat([stats,duplicate_players])
+    if days:
+        stats = utils.clean_n_days_stat(stats)
+    else:
+        stats = utils.clean_per_game_stat(stats)
     return player_stats , headers, stats
 # if __name__ == "__main__":
 #     print(get_statistic())[2]
