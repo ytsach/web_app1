@@ -15,6 +15,9 @@ def app():
     player_stats_data = get_statistic()
     player_stats = player_stats_data[2].drop(columns=['Pos', 'Age'])
     player_names = [name[0] for name in player_stats_data[0] if name != []]
+    # duplicate_players = player_names.groupby('Player').filter(lambda x: len(x) > 2).drop_duplicates(subset='Player')
+    player_names = list(dict.fromkeys(player_names))
+
 
     player_one_name = st.sidebar.multiselect('Player 1:', player_names, default=["Bradley Beal"], )
     st.header('Player Rating')

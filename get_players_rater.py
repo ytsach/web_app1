@@ -9,7 +9,7 @@ from rating import get_rating_statistic
 
 @st.cache
 def get_player_rating_league(player_name=None):
-    all_data_to_rate= get_rating_statistic(all_data=True).dropna()
+    all_data_to_rate= get_rating_statistic(all_data=True).dropna().drop_duplicates(subset=['Player'])
     duplicate = all_data_to_rate.groupby('Player').filter(lambda x: len(x) > 2).drop_duplicates(subset='Player')
     all_data_to_rate = pd.concat([all_data_to_rate, duplicate])
     for index, row in all_data_to_rate.iterrows():
@@ -21,6 +21,6 @@ def get_player_rating_league(player_name=None):
     else:
         return all_data_to_rate.sort_values('NBA Analyzer Rate',ascending=False).reset_index()
 # if __name__ == "__main__":
-#     x = get_player_rating_league(player_name = 'Bradley Beal')
+#     x = get_player_rating_league()
 #     print(x)
 #     pass
