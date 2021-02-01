@@ -2,6 +2,7 @@ from get_player_stat import get_statistic
 import streamlit as st
 import pandas as pd
 import utils
+from new_rate import rater
 
 
 def app():
@@ -13,8 +14,8 @@ def app():
 
     # Web scraping of NBA player stats
     player_stats_data = get_statistic()
-    player_stats = player_stats_data[2].drop(columns=['Pos','Age'])
-    player_names = [name[0] for name in player_stats_data[0] if name != []]
+    player_stats = player_stats_data[2].drop(columns=['Pos','Age']).dropna()
+    player_names = list(dict.fromkeys(utils.fix_names([name[0] for name in player_stats_data[0] if name != []])))
 
     team_one_names = st.sidebar.multiselect('Players From Team1:', player_names, default=["Bradley Beal"], )
     team_two_names = st.sidebar.multiselect('Players From Team2:', player_names, default=["Bradley Beal"], )
@@ -28,23 +29,23 @@ def app():
     elif days == "30 Days":
         player_stats = get_statistic('30')[2]
 
-    team_one_df = player_stats.loc[player_stats['Player'] == team_one_names[0]]
-    team_one_rating = float(utils.get_player_rating(team_one_names[0]))
+    team_one_df = player_stats.loc[player_stats['Player'].str.contains(team_one_names[0])]
+    team_one_rating = float(rater(player_name=team_one_names[0],data=player_stats))
 
     if len(team_one_names) > 1:
         for player_index in range(1, len(team_one_names)):
             team_one_df = pd.concat(
-                [team_one_df, player_stats.loc[player_stats['Player'] == team_one_names[player_index]]])
-            team_one_rating += float(utils.get_player_rating(team_one_names[player_index]))
+                [team_one_df, player_stats.loc[player_stats['Player'].str.contains(team_one_names[player_index])]])
+            team_one_rating += float(rater(player_name=team_one_names[player_index],data=player_stats))
 
-    team_two_df = player_stats.loc[player_stats['Player'] == team_two_names[0]]
-    team_two_rating = float(utils.get_player_rating(team_two_names[0]))
+    team_two_df = player_stats.loc[player_stats['Player'].str.contains(team_two_names[0])]
+    team_two_rating = float(rater(player_name=(team_two_names[0]),data=player_stats))
 
     if len(team_two_names) > 1:
         for player_index in range(1, len(team_two_names)):
             team_two_df = pd.concat(
-                [team_two_df, player_stats.loc[player_stats['Player'] == team_two_names[player_index]]])
-            team_two_rating += float(utils.get_player_rating(team_two_names[player_index]))
+                [team_two_df, player_stats.loc[player_stats['Player'].str.contains(team_two_names[player_index])]])
+            team_two_rating += float(rater(player_name=(team_two_names[player_index]),data=player_stats))
 
     #
     #

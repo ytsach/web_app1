@@ -36,6 +36,6 @@ def get_statistic(days=None):
         stats = utils.clean_n_days_stat(stats)
     else:
         stats = utils.clean_per_game_stat(stats)
-    return player_stats , headers, stats
+    return player_stats , headers, stats.dropna().drop_duplicates(subset=['Player'])
 # if __name__ == "__main__":
 #     print(get_statistic())[2]

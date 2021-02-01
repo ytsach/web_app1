@@ -14,6 +14,7 @@ def get_player_rating(player,all_data=None,statistic=pd.DataFrame({'A' : []})):
     else:
         player_data = statistic.loc[statistic['Player']==player]
     # rating formula is PER
+
     per = float(player_data.iloc[0]['PER'])
     g = float(player_data.iloc[0]['G'])
     mp = float(player_data.iloc[0]['MP'])
@@ -44,4 +45,14 @@ def clean_n_days_stat(dataf):
 def clean_per_game_stat(dataf):
     df = pd.DataFrame(dataf)
     return df.drop(columns=['3PA', '3P%', '2P','2PA','eFG%','2P%','ORB', 'DRB', 'PF'])
+
+def fix_names(names):
+    for i,name in enumerate(names):
+        if name == 'Marvin Bagley III':
+            names.pop(i)
+            names.append('Marvin Bagley')
+        elif name == 'Kelly Oubre Jr.':
+            names.pop(i)
+            names.append('Kelly Oubre')
+    return names
 
