@@ -21,13 +21,15 @@ def app():
     team_two_names = st.sidebar.multiselect('Players From Team2:', player_names, default=["Bradley Beal"], )
 
     days = st.sidebar.selectbox("Statistic Scope:",
-                                ["Total Per Game", "7 Days", "14 Days", "30 Days"])
+                                ["Total Per Game", "7 Days", "14 Days", "30 Days","60 Days"])
     if days == "7 Days":
         player_stats = get_statistic('7')[2]
     elif days == "14 Days":
         player_stats = get_statistic('14')[2]
     elif days == "30 Days":
         player_stats = get_statistic('30')[2]
+    elif days == "60 Days":
+        player_stats = get_statistic('60')[2]
 
     team_one_df = player_stats.loc[player_stats['Player'].str.contains(team_one_names[0])]
     team_one_rating = float(rater(player_name=team_one_names[0],data=player_stats))
@@ -63,5 +65,9 @@ def app():
     st.markdown("""*Sum for Team2:*""")
     st.dataframe(utils.get_sum_to_trade(team_two_df, len(team_two_names)))
     #
+    st.markdown("""***Team 1 will get:***""")
+    st.dataframe(utils.get_dif_trade(utils.get_sum_to_trade(team_one_df, len(team_one_names)),utils.get_sum_to_trade(team_two_df, len(team_two_names))))
+
+
     st.markdown("""***Trade Score*:**""")
     st.text("Team1 rating: {}           Team2 rating: {}.".format(team_one_rating, team_two_rating))

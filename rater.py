@@ -22,13 +22,15 @@ def app():
     player_names = list(dict.fromkeys(player_names))
 
     days = st.sidebar.selectbox("Statistic Scope:",
-                                ["Total Per Game", "7 Days", "14 Days", "30 Days"])
+                                ["Total Per Game", "7 Days", "14 Days", "30 Days","60 Days"])
     if days == "7 Days":
         player_stats = get_statistic('7')[2]
     elif days == "14 Days":
         player_stats = get_statistic('14')[2]
     elif days == "30 Days":
         player_stats = get_statistic('30')[2]
+    elif days == "60 Days":
+        player_stats = get_statistic('60')[2]
 
     player_one_name = st.sidebar.multiselect('Player 1:', player_names, default=["Bradley Beal"], )
     st.header('Player Rating')

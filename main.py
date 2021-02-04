@@ -4,9 +4,11 @@ import welcome
 import inj
 import trade_analyzer
 import rater
+import player_form
 import streamlit as st
 PAGES = {
     "Welcome Page": welcome,
+    "Player Form": player_form,
     "Compare Players": compare_players,
     "Trade Analyzer":trade_analyzer,
     "Daily Leaders": daily_leaders,
