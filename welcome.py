@@ -20,8 +20,12 @@ def app():
     st.image(image, caption='NBA Data Analyzer',
     use_column_width = True)
 
-    st.markdown(""" ***Last Release 1.2.21.***\n
+    st.markdown(""" ***Last Release 4.2.21.***\n
     **New Features:**\n
+    1.fix bugs\n
+    2.player form\n
+    
+    ***Release 31.1.21.***\n
     1. fixed bugs in the compare and ranking.\n
     2. rating formula was update\n\n
     
