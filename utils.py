@@ -111,3 +111,8 @@ def get_dif_comp(df1, df2):
                           float(pts2) - float(pts1)]],
                         columns=['FG%', 'FT%', '3P', 'REB', 'AST', 'STL', 'BLK', 'TOV', 'PTS']).style.applymap(
         _color_red_or_green).format("{:.2f}")
+
+
+def index_fix(df):
+    df.index = range(1,len(df)+1)
+    return df
