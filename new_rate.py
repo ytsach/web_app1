@@ -29,7 +29,7 @@ def rater(player_name=None, data=None):
 
     # formula = ((fgm * 55.91 + stl * 65.89 + threes * 65.757 + ftm * 46.845 + blk * 70.19 + reb * 45.67 + ast * 50 + pts * 57 - ftmiss * 50.091 - fgmiss * 65.19 - to * 53.897) * 1 / min) * g
     formula = ((
-                fgm * 58.91 + stl * 70.89 + threes * 61.757 + ftm * 50.845 + blk * 75.19 + reb * 45.67 + ast * 50 + pts * 45 - ftmiss * 70.091 - fgmiss * 65.19 - to * 65.897))
+                fgm * 0.477 + stl * 9.2 + threes * 4.48 + ftm * 0.22 + blk * 12.2 + reb * 2.7 + ast * 4.48 + pts * 1 - ftmiss * 0.78 - fgmiss * 0.533 - to * 6.3))
     return "{:.1f}".format(formula)
 
 # if __name__ == "__main__":

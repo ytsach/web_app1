@@ -3,6 +3,7 @@ import streamlit as st
 import pandas as pd
 import utils
 from new_rate import rater
+import altair as alt
 
 
 def app():
@@ -71,3 +72,35 @@ def app():
 
     st.markdown("""***Trade Score*:**""")
     st.text("Team1 rating: {}           Team2 rating: {}.".format(team_one_rating, team_two_rating))
+
+    # data_graph_player_one = [new_rate.rater(player_name=player_one_name[0], data=get_statistic()[2]),
+    #                          new_rate.rater(player_name=player_one_name[0], data=get_statistic('60')[2]),
+    #                          new_rate.rater(player_name=player_one_name[0], data=get_statistic('30')[2]),
+    #                          new_rate.rater(player_name=player_one_name[0], data=get_statistic('14')[2]),
+    #                          new_rate.rater(player_name=player_one_name[0], data=get_statistic('7')[2])]
+    # data_graph_player_two = [new_rate.rater(player_name=player_two_name[0], data=get_statistic()[2]),
+    #                          new_rate.rater(player_name=player_two_name[0], data=get_statistic('60')[2]),
+    #                          new_rate.rater(player_name=player_two_name[0], data=get_statistic('30')[2]),
+    #                          new_rate.rater(player_name=player_two_name[0], data=get_statistic('14')[2]),
+    #                          new_rate.rater(player_name=player_two_name[0], data=get_statistic('7')[2])]
+    #
+    # df_chart = pd.DataFrame(
+    #     {
+    #         'Days': [120, 60, 30, 14, 7],
+    #         "Team1": team_one_rating,
+    #         "Team2": team_two_rating
+    #     },
+    #     columns=['Days', "Team1", "Team2"]
+    # )
+    #
+    # df_chart = df_chart.melt('Days', var_name='name', value_name='value')
+    #
+    #
+    # chart = alt.Chart(df_chart).mark_line().encode(
+    #     x=alt.X(field='Days',type='nominal',sort='x'),
+    #     y=alt.Y('value:Q'),
+    #     color=alt.Color("name:N")
+    # ).properties(title="Stat Chart")
+    #
+    # st.header('Rate changes in time between Team1 to Team2')
+    # st.altair_chart(chart, use_container_width=True)
