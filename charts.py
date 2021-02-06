@@ -10,7 +10,7 @@ def get_player_df(player_name):
             rater(player_name=player_name, data=get_statistic('60')[2])[0],
             rater(player_name=player_name, data=get_statistic('30')[2])[0],
             rater(player_name=player_name, data=get_statistic('14')[2])[0],
-            rater(player_name=player_name, data=get_statistic('7')[2])][0]
+            rater(player_name=player_name, data=get_statistic('7')[2])[0]]
 
 
 def get_chart_player(team_one_name, team_two_name, team=False):
