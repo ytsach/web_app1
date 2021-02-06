@@ -8,7 +8,7 @@ import streamlit as st
 
 
 
-@st.cache
+@st.cache(suppress_st_warning=True)
 def get_daily_leaders():
     page = requests.get('http://www.espn.com/nba/dailyleaders')
     soup = BeautifulSoup(page.text,features="html.parser")

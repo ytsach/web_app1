@@ -11,13 +11,15 @@ def app():
     st.markdown("""
     Here you can find the leaders of the day accoriding ESPN rating
     """)
+    with st.spinner('Loading'):
 
-    # Web scraping of NBA player stats
-    leaders_data = get_daily_leaders()
+        # Web scraping of NBA player stats
+        leaders_data = get_daily_leaders()
 
-   
-    # st.header('Chosen Player one is: {}'.format(player_one_name[0]))
-    st.dataframe(leaders_data)
+
+        # st.header('Chosen Player one is: {}'.format(player_one_name[0]))
+        st.dataframe(leaders_data)
+    st.spinner('Done!')
 
    
 

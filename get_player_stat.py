@@ -4,7 +4,7 @@ import pandas as pd
 import streamlit as st
 import utils
 
-@st.cache
+@st.cache(suppress_st_warning=True)
 def get_statistic(days=None):
     # NBA season we will be analyzing
     # URL page we will scraping (see image above)

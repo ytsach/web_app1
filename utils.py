@@ -2,6 +2,8 @@ import pandas as pd
 from rating import get_rating_statistic
 
 
+
+
 def get_relevant_data_compare(dataf):
     df = pd.DataFrame(dataf)
     # return df.drop(columns=['Player', 'Pos', 'Age', 'Tm'])
@@ -116,3 +118,13 @@ def get_dif_comp(df1, df2):
 def index_fix(df):
     df.index = range(1,len(df)+1)
     return df
+
+def combine_lists(L):
+    res = list()
+    for j in range(0, len(L[0])):
+        tmp = 0
+        for i in range(0, len(L)):
+            tmp = tmp + L[i][j]
+        res.append(tmp)
+    return res
+
