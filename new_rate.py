@@ -11,7 +11,8 @@ def rater(player_name=None, data=None):
     # data = get_statistic()[2]
     player_data = data.loc[data['Player'].str.contains(player_name)]
     if player_data.empty:
-        return 0
+        to_chart = 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0
+        return 0, to_chart
     fgm = float(player_data.iloc[0]['FG'])
 
     stl = float(player_data.iloc[0]['STL'])
@@ -31,11 +32,11 @@ def rater(player_name=None, data=None):
     # formula = ((
     #             fgm * 0.477 + stl * 9.2 + threes * 4.48 + ftm * 0.22 + blk * 12.2 + reb * 2.7 + ast * 4.48 + pts * 1 - ftmiss * 0.78 - fgmiss * 0.533 - to * 6.3))
     formula = ((
-                fgm * 10.2 + stl * 14.2 + threes * 13.48 + ftm * 6.02 + blk * 16.2 + reb * 3.7 + ast * 6.48 + pts * 1.12 - ftmiss * 8.8 - fgmiss * 8.6 - to * 8.3))
+            fgm * 10.2 + stl * 14.2 + threes * 13.48 + ftm * 6.02 + blk * 16.2 + reb * 3.7 + ast * 6.48 + pts * 1.12 - ftmiss * 8.8 - fgmiss * 8.6 - to * 8.3))
 
-    to_chart = fgm,-fgmiss,ftm,-ftmiss,threes,reb,ast,stl,blk,-to,pts
+    to_chart = fgm, -fgmiss, ftm, -ftmiss, threes, reb, ast, stl, blk, -to, pts
     # return "{:.1f}".format(formula)
-    return float(round(formula,2)),to_chart
+    return float(round(formula, 2)), to_chart
 
 # if __name__ == "__main__":
 #     print(rater(player_name='Bradley Beal'))
