@@ -62,6 +62,9 @@ def fix_names(names):
         elif name == 'Larry Nance Jr.':
             names.pop(i)
             names.append('Larry Nance')
+        elif name == 'Tim Hardaway Jr.':
+            names.pop(i)
+            names.append('Tim Hardaway')
     return names
 
 
