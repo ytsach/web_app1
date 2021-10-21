@@ -19,8 +19,8 @@ def app():
     player_stats = player_stats_data[2].drop(columns=['Pos','Age']).dropna()
     player_names = list(dict.fromkeys(utils.fix_names([name[0] for name in player_stats_data[0] if name != []])))
 
-    team_one_names = st.sidebar.multiselect('Players From Team1:', player_names, default=["Bradley Beal"], )
-    team_two_names = st.sidebar.multiselect('Players From Team2:', player_names, default=["Bradley Beal"], )
+    team_one_names = st.sidebar.multiselect('Players From Team1:', player_names, default=["LeBron James"], )
+    team_two_names = st.sidebar.multiselect('Players From Team2:', player_names, default=["LeBron James"], )
 
     days = st.sidebar.selectbox("Statistic Scope:",
                                 ["Total Per Game", "7 Days", "14 Days", "30 Days","60 Days"])

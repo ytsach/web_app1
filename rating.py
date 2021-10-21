@@ -39,5 +39,5 @@ def get_rating_statistic(player_name=None, all_data=None):
         return stats.loc[stats['Player'].str.contains(player_name)]
 
 # if __name__ == "__main__":
-#     print(rater('Bradley Beal'))
+#     print(rater('LeBron James'))
 #     pass

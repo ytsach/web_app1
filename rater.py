@@ -33,7 +33,7 @@ def app():
         player_stats = get_statistic('60')[2]
     with st.spinner('Loading...'):
 
-        player_one_name = st.sidebar.multiselect('Player 1:', player_names, default=["Bradley Beal"], )
+        player_one_name = st.sidebar.multiselect('Player 1:', player_names, default=["LeBron James"], )
         st.header('Player Rating')
         st.dataframe(utils.index_fix(get_player_rating_league(player_name=player_one_name[0],data=player_stats,scope=days).drop(columns=["index"])))
 

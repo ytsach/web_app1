@@ -20,7 +20,7 @@ def app():
 
     player_names = list(dict.fromkeys(utils.fix_names([name[0] for name in player_stats_data[0] if name != []])))
 
-    player_one_name = st.sidebar.multiselect('Player :', player_names, default=["Bradley Beal"], )
+    player_one_name = st.sidebar.multiselect('Player :', player_names, default=["LeBron James"], )
     with st.spinner('Loading...'):
         player_stats7 = get_statistic('7')[2].drop(columns=['FG','FGA','FT','FTA'])
         player_stats14 = get_statistic('14')[2].drop(columns=['FG','FGA','FT','FTA'])

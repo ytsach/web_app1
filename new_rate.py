@@ -39,5 +39,5 @@ def rater(player_name=None, data=None):
     return float(round(formula, 2)), to_chart
 
 # if __name__ == "__main__":
-#     print(rater(player_name='Bradley Beal'))
+#     print(rater(player_name='LeBron James'))
 #     pass

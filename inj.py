@@ -21,7 +21,7 @@ def app():
     player_names = [name[0] for name in player_stats_data[0] if name != []]
     teams_names = [name[3] for name in player_stats_data[0] if name != []]
 
-    player_one_name = st.sidebar.multiselect('Player :', player_names, default=["Bradley Beal"], )
+    player_one_name = st.sidebar.multiselect('Player :', player_names, default=["LeBron James"], )
     teams_name_choose = st.sidebar.multiselect('Team :', teams_names, default=["MIA"], )
 
 
