@@ -15,7 +15,7 @@ PAGES = {
     "Injuery report": inj,
     "Player Rater": rater,
 }
-st.sidebar.title('NBA Data Analyzer')
+st.sidebar.title('NBA Data Analyzer 2021-2022')
 selection = st.sidebar.radio("Go to", list(PAGES.keys()))
 page = PAGES[selection]
 page.app()

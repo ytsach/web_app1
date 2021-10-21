@@ -6,7 +6,7 @@ from PIL import Image
 
 def app():
     image = Image.open('i.jpg')
-    st.title('Welcome to NBA Data Analyzer')
+    st.title('Welcome to NBA Data Analyzer2021-2022')
 
     st.markdown("""
     **Here you can find data and statistics on NBA players**
@@ -20,20 +20,7 @@ def app():
     st.image(image, caption='NBA Data Analyzer',
     use_column_width = True)
 
-    st.markdown(""" ***Last Release 4.2.21.***\n
-    **New Features:**\n
-    1.fix bugs\n
-    2.player form\n
-    
-    ***Release 31.1.21.***\n
-    1. fixed bugs in the compare and ranking.\n
-    2. rating formula was update\n\n
-    
-    
-    ***Release 31.1.21.***\n
-    **New Features:**\n
-    1. Compare players and Trade analyzer scope 7,14,30 days.\n
-    2. Player Rater
+    st.markdown(""" New season 21-22, Good luck
     
     """)
 

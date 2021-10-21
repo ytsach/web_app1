@@ -12,7 +12,7 @@ def get_statistic(days=None):
     if days:
         url = "https://www.basketball-reference.com/friv/last_n_days.fcgi?n={}&type=per_game".format(days)
     else:
-        url = "https://www.basketball-reference.com/leagues/NBA_2021_per_game.html"
+        url = "https://www.basketball-reference.com/leagues/NBA_2022_per_game.html"
 
     # this is the HTML from the given URL
     html = urlopen(url)
