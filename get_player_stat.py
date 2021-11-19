@@ -5,12 +5,14 @@ import streamlit as st
 import utils
 
 @st.cache(suppress_st_warning=True)
-def get_statistic(days=None):
+def get_statistic(days=None,totals=None):
     # NBA season we will be analyzing
     # URL page we will scraping (see image above)
     # if days exists then it will take last n days stat
     if days:
         url = "https://www.basketball-reference.com/friv/last_n_days.fcgi?n={}&type=per_game".format(days)
+    elif totals:
+        url = "https://www.basketball-reference.com/leagues/NBA_2022_totals.html"
     else:
         url = "https://www.basketball-reference.com/leagues/NBA_2022_per_game.html"
 

@@ -45,12 +45,15 @@ def app():
             index={'self': player_one_name[0], 'other': player_two_name[0]}, level=-1))
 
         st.header('Players Rating')
-        st.markdown(
-            '**The Player Efficiency Rating (PER) is a per-minute rating developed by ESPN.com columnist John Hollinger.**')
+
         st.text(
-            '{} Rating is {}'.format(player_one_name[0], new_rate.rater(player_name=player_one_name[0], data=player_stats)[0]))
+            '{} Rating per game is {}'.format(player_one_name[0], new_rate.rater(player_name=player_one_name[0], data=player_stats)[0]))
         st.text(
-            '{} Rating is {}'.format(player_two_name[0], new_rate.rater(player_name=player_two_name[0], data=player_stats)[0]))
+            '{} Rating per game is {}'.format(player_two_name[0], new_rate.rater(player_name=player_two_name[0], data=player_stats)[0]))
+        st.text(
+            '{} Rating Total is {}'.format(player_one_name[0], new_rate.rater(player_name=player_one_name[0], data=get_statistic(totals=True)[2])[0]))
+        st.text(
+            '{} Rating Total is {}'.format(player_two_name[0], new_rate.rater(player_name=player_two_name[0], data=get_statistic(totals=True)[2])[0]))
 
         st.header('Discrete difference between {} to {}'.format(player_one_name[0], player_two_name[0]))
         st.dataframe(utils.get_dif_comp(df_player_one.drop(columns=['FG', 'FGA', 'FT', 'FTA']),

@@ -1,4 +1,5 @@
 from get_players_rater import get_player_rating_league
+from get_player_rater_totals import get_player_rating_league_totals
 import streamlit as st
 from get_player_stat import get_statistic
 
@@ -34,10 +35,21 @@ def app():
     with st.spinner('Loading...'):
 
         player_one_name = st.sidebar.multiselect('Player 1:', player_names, default=["LeBron James"], )
-        st.header('Player Rating')
+        st.header('Player Rating Per game')
         st.dataframe(utils.index_fix(get_player_rating_league(player_name=player_one_name[0],data=player_stats,scope=days).drop(columns=["index"])))
 
 
-        st.header('Players Rating')
-        st.dataframe(utils.index_fix(get_player_rating_league(data=player_stats,scope=days).drop(columns=['index'])))
+
+    st.success('Done!')
+
+    with st.spinner('Loading...'):
+
+
+
+        st.header('Players Rating Per game')
+        st.dataframe(utils.index_fix(get_player_rating_league(data=player_stats, scope=days).drop(columns=['index'])))
+        st.header('Players Rating Total')
+        st.dataframe(utils.index_fix(
+            get_player_rating_league_totals(data=get_statistic(totals=True)[2]).drop(columns=['index'])))
+
     st.success('Done!')

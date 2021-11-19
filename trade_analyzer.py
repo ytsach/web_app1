@@ -36,21 +36,27 @@ def app():
     with st.spinner('Loading'):
         team_one_df = player_stats.loc[player_stats['Player'].str.contains(team_one_names[0])]
         team_one_rating = float(rater(player_name=team_one_names[0],data=player_stats)[0])
+        team_one_rating_total = float(rater(player_name=team_one_names[0],data=get_statistic(totals=True)[2])[0])
 
         if len(team_one_names) > 1:
             for player_index in range(1, len(team_one_names)):
                 team_one_df = pd.concat(
                     [team_one_df, player_stats.loc[player_stats['Player'].str.contains(team_one_names[player_index])]])
                 team_one_rating += float(rater(player_name=team_one_names[player_index],data=player_stats)[0])
+                team_one_rating_total += float(
+                    rater(player_name=team_one_names[0], data=get_statistic(totals=True)[2])[0])
 
         team_two_df = player_stats.loc[player_stats['Player'].str.contains(team_two_names[0])]
         team_two_rating = float(rater(player_name=(team_two_names[0]),data=player_stats)[0])
+        team_two_rating_total = float(rater(player_name=(team_two_names[0]),data=get_statistic(totals=True)[2])[0])
 
         if len(team_two_names) > 1:
             for player_index in range(1, len(team_two_names)):
                 team_two_df = pd.concat(
                     [team_two_df, player_stats.loc[player_stats['Player'].str.contains(team_two_names[player_index])]])
                 team_two_rating += float(rater(player_name=(team_two_names[player_index]),data=player_stats)[0])
+                team_two_rating_total += float(
+                    rater(player_name=(team_two_names[0]), data=get_statistic(totals=True)[2])[0])
 
         #
         #
@@ -58,14 +64,14 @@ def app():
         st.header('Comparison between {} to {}'.format(
             str(team_one_names).replace("'", "").replace("[", "").replace("]", "").replace(",", ""),
             str(team_two_names).replace("'", "").replace("[", "").replace("]", "").replace(",", "")))
-        st.markdown("""**Team1:**""")
+        st.markdown("""**Team1:** {} """.format( str(team_one_names).replace("'", "").replace("[", "").replace("]", "").replace(",", "")))
         st.dataframe(team_one_df)
 
-        st.markdown("""**Team2:**""")
+        st.markdown("""**Team2:** {} """.format(str(team_two_names).replace("'", "").replace("[", "").replace("]", "").replace(",", "")))
         st.dataframe(team_two_df)
-        st.markdown("""*Sum for Team1:*""")
+        st.markdown("""*Sum for Team1:* {} """.format(str(team_one_names).replace("'", "").replace("[", "").replace("]", "").replace(",", "")))
         st.dataframe(utils.get_sum_to_trade(team_one_df, len(team_one_names)))
-        st.markdown("""*Sum for Team2:*""")
+        st.markdown("""*Sum for Team2:* {} """.format(str(team_two_names).replace("'", "").replace("[", "").replace("]", "").replace(",", "")))
         st.dataframe(utils.get_sum_to_trade(team_two_df, len(team_two_names)))
         #
         st.markdown("""***Team 1 will get:***""")
@@ -73,7 +79,8 @@ def app():
 
 
         st.markdown("""***Trade Score*:**""")
-        st.text("Team1 rating: {}           Team2 rating: {}.".format(team_one_rating, team_two_rating))
+        st.text("Team1 rating per game: {}           Team2 rating per game: {}.".format(team_one_rating, team_two_rating))
+        st.text("Team1 rating total season: {}           Team2 rating total season: {}.".format(team_one_rating_total, team_two_rating_total))
 
 
         st.header('Rate changes in time between Team1 to Team2')
