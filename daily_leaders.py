@@ -9,7 +9,7 @@ def app():
     st.title('{} Daily leaders'.format(datetime.today().strftime('%Y-%m-%d')))
 
     st.markdown("""
-    Here you can find the leaders of the day accoriding ESPN rating
+    Here you can find the leaders of the day according ESPN rating
     """)
     with st.spinner('Loading'):
 
