@@ -21,11 +21,16 @@ def app():
 
     player_one_name = st.sidebar.multiselect('Player :', player_names, default=["LeBron James"], )
     year = st.sidebar.selectbox("Statistic Year:",
-                                ["22","21","20","19","18"])
+                                ["21","20","19","18"])
     with st.spinner('Loading...'):
         player_stat_according_year = get_statistic(year=year)[2].drop(columns=['FG','FGA','FT','FTA'])
+        player_stat_according_year22 = get_statistic(year="22")[2].drop(columns=['FG','FGA','FT','FTA'])
 
         df_player_one_year = player_stat_according_year.loc[player_stat_according_year['Player'].str.contains(player_one_name[0])]
+        df_player_one_year22 = player_stat_according_year22.loc[player_stat_according_year22['Player'].str.contains(player_one_name[0])]
+
+        st.markdown("""**{} Statistics for year 2022:**""".format(player_one_name[0]))
+        st.dataframe(df_player_one_year22)
 
         st.markdown("""**{} Statistics for year 20{}:**""".format(player_one_name[0],year))
         st.dataframe(df_player_one_year)

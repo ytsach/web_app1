@@ -80,8 +80,8 @@ def app():
         st.dataframe(utils.get_dif_trade(utils.get_sum_to_trade(team_one_df, len(team_one_names)),utils.get_sum_to_trade(team_two_df, len(team_two_names))))
 
         st.markdown("""***Team 2 {} will get:***""".format(
-            str(team_one_names).replace("'", "").replace("[", "").replace("]", "").replace(",", ""),
-            str(team_two_names).replace("'", "").replace("[", "").replace("]", "").replace(",", "")))
+            str(team_two_names).replace("'", "").replace("[", "").replace("]", "").replace(",", ""),
+            str(team_one_names).replace("'", "").replace("[", "").replace("]", "").replace(",", "")))
         st.dataframe(utils.get_dif_trade(utils.get_sum_to_trade(team_two_df, len(team_two_names)),
                                          utils.get_sum_to_trade(team_one_df, len(team_one_names))))
 
