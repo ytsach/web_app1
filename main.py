@@ -8,6 +8,7 @@ import player_form
 import cat_leaders
 import sleepers
 import player_stat_year
+import search_for_player
 import streamlit as st
 PAGES = {
     "Welcome Page": welcome,
@@ -19,7 +20,8 @@ PAGES = {
     "Player Rater": rater,
     "Category Leaders":cat_leaders,
     "Player Statistic According Year":player_stat_year,
-    "Sleepers":sleepers
+    "Sleepers":sleepers,
+    "Search For Player":search_for_player
 }
 st.sidebar.title('NBA Data Analyzer 2021-2022')
 selection = st.sidebar.radio("Go to", list(PAGES.keys()))

@@ -76,7 +76,6 @@ def app():
     # Web scraping of NBA player stats
     player_stats_data = get_statistic()
     player_stats = player_stats_data[2].drop(columns=['Pos', 'Age']).dropna()
-    player_names = list(dict.fromkeys(utils.fix_names([name[0] for name in player_stats_data[0] if name != []])))
     cat_array = ["FG","FT","3P","REB","AST","STL","BLK","TO","PTS"]
 
     cat = st.sidebar.selectbox('Category Leaders:', cat_array)
