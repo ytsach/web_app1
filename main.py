@@ -23,7 +23,7 @@ PAGES = {
     "Sleepers":sleepers,
     "Search For Player":search_for_player
 }
-st.sidebar.title('NBA Data Analyzer 2021-2022')
+st.sidebar.title('NBA Data Analyzer 2022-2023')
 selection = st.sidebar.radio("Go to", list(PAGES.keys()))
 page = PAGES[selection]
 page.app()

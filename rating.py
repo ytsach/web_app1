@@ -8,7 +8,7 @@ import streamlit as st
 def get_rating_statistic(player_name=None, all_data=None):
     # NBA season we will be analyzing
     # URL page we will scraping (see image above)
-    url = "https://www.basketball-reference.com/leagues/NBA_2022_advanced.html"
+    url = "https://www.basketball-reference.com/leagues/NBA_2023_advanced.html"
     # this is the HTML from the given URL
     html = urlopen(url)
     soup = BeautifulSoup(html, features="lxml")

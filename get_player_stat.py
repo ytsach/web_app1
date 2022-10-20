@@ -6,7 +6,7 @@ import streamlit as st
 import utils
 
 @st.cache(suppress_st_warning=True)
-def get_statistic(days=None,totals=None,year=22):
+def get_statistic(days=None,totals=None,year=23):
     # NBA season we will be analyzing
     # URL page we will scraping (see image above)
     # if days exists then it will take last n days stat
