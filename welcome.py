@@ -20,7 +20,7 @@ def app():
     st.image(image, caption='NBA Data Analyzer',
     use_column_width = True)
 
-    st.markdown(""" New season 22-23, Good luck
+    st.markdown(""" New season 22-23, Good luck!!
     
     """)
 
